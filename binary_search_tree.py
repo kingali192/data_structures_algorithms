@@ -96,6 +96,35 @@ class Node(object):
                     visited.add(node)
                     result.append(node.value)
                     node = None
+                    
+    def height(node):
+        if node is None:
+            return 0
+        else:
+            left = self.height(node.left)
+            right = self.height(node.right)
+        self.height(root.left)
+        self.height(node.right)
+        return max(left, right) + 1
+    
+    def BFS(self, root):
+        if root = None:
+            return 0
+        else:
+            h = self.height(root)
+            for i in range(1, h+1):
+                self.printBFT(root, i)
+                
+    def printBFT(self, root, level):
+        if root is None:
+            return 
+        else:
+            if level == 1:
+                print(root.data, end = ' ')
+            elif level > 1:
+                printBFT(root.left, level - 1)
+            printBFT(root.right, level - 1)
+            
     
     
     
