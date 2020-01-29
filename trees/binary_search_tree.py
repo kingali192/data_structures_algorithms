@@ -40,8 +40,8 @@ class Node(object):
     def postorder(self, root):
         res = []
         if root:
-            res = self.preorder(root.left)
-            res = res + self.preoder(root.right)
+            res = self.postorder(root.left)
+            res = res + self.postorder(root.right)
             res.append(root.val)
         return res
     
@@ -64,7 +64,7 @@ class Node(object):
         if not root: 
             return
         
-        stack = []
+        stack, result = [], []
         stack.append(root)
         while stack:
             node = stack.pop()
