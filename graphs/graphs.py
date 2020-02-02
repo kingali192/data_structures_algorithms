@@ -1,22 +1,34 @@
-class AdjacencyList(object):
-    def __init__(self):
-        self.List = {}
+from collections import defaultdict 
+  
+#Class to represent a graph 
+class Graph: 
+    def __init__(self,vertices): 
+        self.graph = defaultdict(list) #dictionary containing adjacency List 
+        self.V = vertices #No. of vertices 
+  
+    # function to add an edge to graph 
+    def addEdge(self,u,v): 
+        self.graph[u].append(v)
+            
+    def BFS(self, s):
+        visited = [False] * len(self.graph)
+        queue = []
+        queue.append(s)
+        visited[s] = True
+        for i in self.graph[s]:
+            if visited[i] == False:
+                queue.append(i)
+                visited[i] = True
+    
+    def DFShelp(self,u,v):
+        visited[v] = True
+        for i in self.graph[v]:
+            if visited[v] == False:
+                self.DFShelp(i, visited)
+    
+    def DFS(self, v):
+        visited = [False] * len(self.graph)
+        self.DFShelp(v, visited)
         
-    def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present
-        if fromVertex in self.List.keys():
-            self.List[fromVertex].append(toVertex)
-        else:
-            self.List[fromVertex] = [toVertex]
             
-    def printList(self):
-        for i  in self.List:
-            print(i,'->',' -> '.join([str(j) for j in self.List[i]]))
-            
-if __name__ == '__main__':
-    al = AdjacencyList()
-    al.addEdge(0,1)
-    al.addEdge(0,4)
-    al.addEdge(4,1)
-    al.addEdge(4,13)
-    al.printList()
+        

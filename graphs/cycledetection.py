@@ -9,21 +9,24 @@ class Graph:
     # function to add an edge to graph 
     def addEdge(self,u,v): 
         self.graph[u].append(v)
-            
-    def topologicalHelp(self, v, visited, stack):
-        visited[v] == True
+        
+    def isCycleHelp(self, v, visited, parent):
+        visited[v] = True
         for i in self.graph[v]:
             if visited[i] == False:
-                self.topologicalHelp(i, visited, stack)
-        stack.insert(0, v)
-        
-    def topological(self):
+                if self.isCycleHelp(i, visited, v):
+                    return True
+            elif parent != i:
+                return True
+        return False
+    
+    def isCycle(self):
         visited = [False] * (self.V)
-        stack = []
         for i in range(self.V):
             if visited[i] == False:
-                self.topologicalHelp(i, visited, stack)
-        return stack
+                if self.isCycleHelp(i, visited, -1) == True:
+                    return True:
+        return False
     
-    
-
+        
+                
